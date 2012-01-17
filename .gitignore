@@ -17,7 +17,7 @@ doc/app
 doc/plugins
 doc/*.dot
 coverage/*
-
+.project
 
 # Ignore bundler config
 /.bundle
