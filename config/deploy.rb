@@ -2,7 +2,7 @@ set :application, "lcdc_2"
 set :repository,  "git@github.com:skunath/lcdc.git"
 
 set :scm, :git
-set :user, "skunath"
+set :user, "sak68"
 ssh_options[:forward_agent] = true
 set :branch, "master"
 set :deploy_via, :remote_cache
