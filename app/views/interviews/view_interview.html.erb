@@ -1,0 +1,206 @@
+<br><br>
+
+<font face="arial">
+
+<h1>Interview: <%= @interview.interview_id %></h1>
+
+
+<h2>Interview Data:</h2>
+<table>
+
+<tr>
+<td>
+Interview Date:
+</td>
+<td>
+<%= @interview.interview_date %>
+</td>
+</tr>
+
+
+<tr>                                                                                           
+<td>                                                                                           
+Source Class:                                                                                
+</td>                                                                                          
+<td>                                                                                           
+<%= @interview.source_class %>                                                               
+</td>                                                                                          
+</tr> 
+
+<tr>
+<td>
+Community Studied:  
+</td>
+<td>
+<%= @interview.community_studied %>  
+</td>
+</tr>
+
+
+</table>
+<hr>
+
+<h2>Interviewees:</h2>
+<% for interviewee in @interview.interviewees %>
+<table>
+<tr>
+<th>
+Name:
+</th>
+<th>
+<%= interviewee.pseudonym %>
+</th>
+</tr>
+
+<tr>
+<td>
+Community:
+</td>
+<td>
+<%= interviewee.community %>
+</td>
+</tr>
+
+<tr>
+<td>
+Sex:
+</td>
+<td>
+<%= interviewee.sex %>
+</td>
+</tr>
+
+<tr>
+<td>
+Age:
+</td>
+<td>
+<%= interviewee.age %>
+</td>
+</tr>
+
+<tr>
+<td>
+Ethnicity:
+</td>
+<td>
+<%= interviewee.ethnicity %>
+</td>
+</tr>
+
+<tr>
+<td>
+Occupation:
+</td>
+<td>
+<%= interviewee.occupation %>
+</td>
+</tr>
+
+<tr>
+<td>
+Education:
+</td>
+<td>
+<%= interviewee.education  %>
+</td>
+</tr>
+
+<tr>
+<td>
+Childhood Residence:
+</td>
+<td>
+<%= interviewee.childhood_residence %>
+</td>
+</tr>
+
+<tr>
+<td>
+Current Residence:
+</td>
+<td>
+<%= interviewee.current_residence %>
+</td>
+</tr>
+
+
+<% if interviewee.nil?
+	if interviewee.notes.strip().size > 0
+
+ %>
+<tr>
+<td colspan=2>
+Notes:
+</td>
+</tr>
+<tr>
+<td colspan=2>
+<%= interviewee.notes %>
+</td>
+</tr>
+<% end
+end
+ %>
+
+
+</table>
+<hr>
+<% end %>
+
+<h2>Interviewers:</h2>
+
+<% for interviewer in @interview.interviewers %>
+<table>
+<tr>
+<th>
+Name:
+</th>
+<th>
+<%= interviewer.name %>
+</th>
+</tr>
+
+<tr>
+<td>
+Sex:
+</td>
+<td>
+<%= interviewer.sex %>
+</td>
+</tr>
+
+<tr>
+<td>
+Age:
+</td>
+<td>
+<%= interviewer.age %>
+</td>
+</tr>
+
+<tr>
+<td>
+Ethnicity:
+</td>
+<td>
+<%= interviewer.ethnicity %>
+</td>
+</tr>
+
+</table>
+<hr>
+<% end %>
+
+
+
+<br><br>
+<h2>Files:</h2>
+<ul>
+<% for file in @interview.interview_files %>
+<li>
+	<%#= link_to file.file_name, LCDC_DATA_FILE_WEB_LOCATION + @interview.f_interview_id + "/" + file.file_name %> (<%#= number_to_human_size(File.size(LCDC_DATA_FILE_LOCATION + @interview.f_interview_id + "/" + file.file_name ))%>) <% if !file.file_name.index(".trs").nil?%> <%= link_to "View Transcript", :action => "transcript_view", :id => file.id %><%end%>
+</li>
+<% end %>
+</ul>
+
