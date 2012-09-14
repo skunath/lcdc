@@ -5,8 +5,8 @@
 <h1>Interview: <%= @interview.interview_id %></h1>
 
 
-<h2>Interview Data:</h2>
-<table>
+<h2>Interview Data</h2>
+<table class="table table-hover table-bordered table-condensed table-striped">
 
 <tr>
 <td>
@@ -36,13 +36,34 @@ Community Studied:
 </td>
 </tr>
 
+<tr>
+<td>
+Audio Recording Device:  
+</td>
+<td>
+<%= @interview.audio_recording_microphone %>  
+</td>
+</tr>
+
+<tr>
+<td>
+Audio Recording Format:  
+</td>
+<td>
+<%= @interview.audio_recording_format %>  
+</td>
+</tr>
+
+
 
 </table>
+
+
 <hr>
 
-<h2>Interviewees:</h2>
+<h2>Interviewees</h2>
 <% for interviewee in @interview.interviewees %>
-<table>
+<table class="table table-hover table-bordered table-condensed table-striped">
 <tr>
 <th>
 Name:
@@ -148,10 +169,10 @@ end
 <hr>
 <% end %>
 
-<h2>Interviewers:</h2>
+<h2>Interviewers</h2>
 
 <% for interviewer in @interview.interviewers %>
-<table>
+<table class="table table-hover table-bordered table-condensed table-striped">
 <tr>
 <th>
 Name:
@@ -195,7 +216,7 @@ Ethnicity:
 
 
 <br><br>
-<h2>Files:</h2>
+<h2>Files</h2>
 <ul>
 <% for file in @interview.interview_files %>
 <li>

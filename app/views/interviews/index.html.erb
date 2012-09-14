@@ -1,27 +1,5 @@
 <h1>Interviews</h1>
 
-<table id="interviews" class="table table-hover table-bordered table-condensed table-striped">
-<thead>
-  <tr>
-    <th>Interview</th>
-    <th>Name</th>
-    <th>Sex</th>
-    <th>Ethnicity</th>
-    <th>Age</th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
-  <% @interviews.each do |interview| %>
-    <tr>
-      <td><%= "%03d" % interview.interview_id %></td>
-      <td><%= interview.names %></td>
-      <td><%= interview.sex %></td>
-      <td><%= interview.ethnicity %></td>
-	  <td><%= interview.age %></td>
-      <td><%= link_to "View", url_for(:controller => "interviews",:action => "view_interview", :id => interview.id )%></td>
-
-    </tr>
-  <% end %>
-</tbody>
-</table>
+<div id="interviews">
+	<%= render :partial => "interview_list"%>	
+</div>
