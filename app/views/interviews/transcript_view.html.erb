@@ -1,0 +1,60 @@
+<font face="arial">
+
+<h1>Transcript viewer: 019-danielle.trs</h1>
+<h2>Transciber: <%= @transcriber %></h2>
+
+<h2>Speakers:</h2>
+<ul>
+<% for speaker in @speakers.keys %>
+        <li><%= @speakers[speaker] %></li>
+
+<% end %>
+</ul>
+<table class="table table-hover table-bordered table-condensed table-striped">
+          <thead>
+            <tr>
+              <th class="span-2">Speaker</th>
+              <th class="span-2">Time</th>
+              <th class="span-16 last">Transcript</th>
+            </tr>
+          </thead>
+
+
+<%for line in @turns %>
+<tr>
+<td style="vertical-align:top">
+<%
+	speakers_here = line[0].split()
+	for speaker_now in speakers_here %>
+	<%= @speakers[speaker_now] %>
+	<% end %>
+</td>
+<td style="vertical-align:top">
+<%= line[1] %>
+</td>
+<td>
+<%= line[2] %>
+<br>
+<%= line[3].join(" ") %>
+</td>
+</tr>
+<% end %>
+</table>
+
+<br>
+
+<% if @bad_mappings.size > 0 %>
+	<h4>Bad Phonetic Mappings</h4>
+	Total transcribed words: <%= @word_count %>
+	<br>
+	Total words not in dictionary: <%= @word_count_wrong %>
+	<br>
+	<ul>
+	<% for item in @bad_mappings.uniq!.sort %>
+		<li><%= item %></li>
+	<% end %>
+	</ul>
+
+<% end %>
+
+
