@@ -1,0 +1,31 @@
+<table id="transcript_search_results" class="table table-hover table-bordered table-condensed table-striped">
+<thead>
+  <tr>
+    <th>Interview</th>
+    <th>Speaker</th>
+    <th>Sex</th>
+    <th>Ethnicity</th>
+    <th>Age</th>
+    <th>Transcription Source</th>
+    <th>Transcription Speaker</th>
+    <th>Transcription</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <% @transcript_results.each do |result| %>
+    <tr>
+      <td><%= "%03d" % result.interview.interview_id %></td>
+      <td><%= result.interview.names %></td>
+      <td><%= result.interview.sex %></td>
+      <td><%= result.interview.ethnicity %></td>
+	  <td><%= result.interview.age %></td>
+      <td><%= result.interview_file.file_name %></td>
+      <td><%= result.speaker %></td>
+      <td><%= result.transcription %></td>
+	  <td><%= link_to "View", url_for(:controller => "interviews",:action => "transcript_view", :id => result.interview_file.id, :time_start => result.time.to_s )%></td>
+
+    </tr>
+  <% end %>
+</tbody>
+</table>

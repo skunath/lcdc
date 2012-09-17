@@ -45,28 +45,37 @@
             <ul class="nav">
               <li><%= link_to "Home", url_for(:controller => "home",:action => "index")%></li>
               <li><%= link_to "Interviews", url_for(:controller => "interviews",:action => "index")%></li>
-              <li><%#= link_to "Admin", url_for(:controller => "admin",:action => "index")%></li>
+             
               
             </ul>
-
-			<%= form_tag url_for(:controller => "interviews", :action => "transcript_search"), {:class => "navbar-search pull-right" } do |f| -%> 
-				<%= text_field_tag :search, params[:search], {:class => "search-query", :placeholder => "Transcript Search"} %> 
-			<% end -%>
-
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
 
-      <%= yield %>
 
+    <div class="container-fluid">
+ <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+			<%= render :partial => "admin/_admin_left_menu.html.erb"%>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <%= yield %>
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+
+
+      
     </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster 
+    <!-- Placed at the end of the document so the pages load faster
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap-transition.js"></script>
     <script src="../assets/js/bootstrap-alert.js"></script>
@@ -80,6 +89,6 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
--->
+ -->
   </body>
 </html>

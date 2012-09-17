@@ -3,6 +3,7 @@ class Interview < ActiveRecord::Base
   has_many :interviewees
   has_many :interviewers
   has_many :interview_files
+  has_many :transcription_indices
   
   
   def names

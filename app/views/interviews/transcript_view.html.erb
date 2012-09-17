@@ -10,6 +10,9 @@
 
 <% end %>
 </ul>
+
+<div id="sar13">asfasf</div>
+
 <table class="table table-hover table-bordered table-condensed table-striped">
           <thead>
             <tr>
@@ -21,7 +24,7 @@
 
 
 <%for line in @turns %>
-<tr>
+<tr id="<%= "sec-" + ("%0.2f" % line[1]).to_s.gsub(".","") %>">
 <td style="vertical-align:top">
 <%
 	speakers_here = line[0].split()
@@ -57,4 +60,11 @@
 
 <% end %>
 
+<% if !@skip_to.nil?%>
+<script>
+$(document).ready(function() { 
+$(document).scrollTop( $("#sec-<%= @skip_to.gsub(".","") %>").offset().top );
+});
+</script>
 
+<% end %>

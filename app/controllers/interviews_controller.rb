@@ -9,6 +9,11 @@ class InterviewsController < ApplicationController
 
 
   def transcript_view
+    if !params[:time_start].nil?
+      @skip_to = params[:time_start]
+    end
+    
+    
     # get the xml
     file = InterviewFile.find(params[:id])
   
@@ -49,6 +54,14 @@ class InterviewsController < ApplicationController
     @turns << temp
         end
 end
+
+  def transcript_search
+    if !params[:search].nil? 
+      @transcript_results = TranscriptionIndex.find(:all, :conditions => ["lower(transcription) like ?", "%" + params[:search].downcase().strip() + "%"])
+    else
+      redirect_to :action => "index"
+    end
+  end
 
 
 end
