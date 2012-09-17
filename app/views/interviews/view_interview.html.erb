@@ -220,7 +220,7 @@ Ethnicity:
 <ul>
 <% for file in @interview.interview_files %>
 <li>
-	<%= link_to file.file_name, "/lcdc-data/" + file.file_name %> (<%= number_to_human_size(File.size(Lcdc::Application.config.LCDC_File_Location + ("%03d" % @interview.interview_id.to_s) + "/" + file.file_name ))%>) <% if !file.file_name.index(".trs").nil?%> <%= link_to "View Transcript", :action => "transcript_view", :id => file.id %><%end%>
+	<%= link_to file.file_name, "/lcdc-data/" + ("%03d" % @interview.interview_id.to_s) + "/" + file.file_name %> (<%= number_to_human_size(File.size(Lcdc::Application.config.LCDC_File_Location + ("%03d" % @interview.interview_id.to_s) + "/" + file.file_name ))%>) <% if !file.file_name.index(".trs").nil?%> <%= link_to "View Transcript", :action => "transcript_view", :id => file.id %><%end%>
 </li>
 <% end %>
 </ul>
