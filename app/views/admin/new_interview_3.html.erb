@@ -1,0 +1,89 @@
+<br><br>
+<div class="row">
+	<div class="span4">
+	
+<font face="arial">
+
+<%= form_for @interviewer, :url => {:controller => "admin", :action => "new_interview_3"}, :html => {:class => "navbar-search" } do |f| -%> 
+  <% @interviewer.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  
+  <legend>New Interview - Step 3</legend>
+  
+  <label>Interviewer Name</label>
+  <%= f.text_field :name %>
+  
+  <label>Ethnicity</label>
+  <%= select("interviewer", "ethnicity", Ethnicity.all.collect {|p| [ p.ethnicity, p.code ] }, {:include_blank => true}) %>
+
+  <label>Sex</label>
+  <%= select("interviewer", "sex", %w[F M], {:include_blank => true}) %>
+  
+  <label>Age</label>
+  <%= f.text_field :age, :placeholder => @next_id.to_s %>
+
+  <%= hidden_field_tag :interview_id, @interview.id%>
+
+
+      
+  <br><br>
+  <%= f.submit "Add Interviewer" %>
+  
+  <% if @display_link_next %><br><Br><%= link_to "View Interview", :action => "view_interview", :id => @interview.id %><% end %>
+  
+  
+<% end -%>
+</div>
+
+
+<div class="span4">
+
+<h2>Interviewers</h2>
+
+<% for interviewer in @interview.interviewers %>
+<table class="table table-hover table-bordered table-condensed table-striped">
+<tr>
+<th>
+Name:
+</th>
+<th>
+<%= interviewer.name %>
+</th>
+</tr>
+
+<tr>
+<td>
+Sex:
+</td>
+<td>
+<%= interviewer.sex %>
+</td>
+</tr>
+
+<tr>
+<td>
+Age:
+</td>
+<td>
+<%= interviewer.age %>
+</td>
+</tr>
+
+<tr>
+<td>
+Ethnicity:
+</td>
+<td>
+<%= interviewer.ethnicity %>
+</td>
+</tr>
+
+</table>
+<hr>
+<% end %>
+
+
+</div>
+
+</div>

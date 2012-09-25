@@ -11,13 +11,13 @@
 </thead>
 <tbody>
   <% @interviews.each do |interview| %>
-    <tr>
+    <tr <% if interview.visible == 0 %>class="error"<% end %>>
       <td><%= "%03d" % interview.interview_id %></td>
       <td><%= interview.names %></td>
       <td><%= interview.sex %></td>
       <td><%= interview.ethnicity %></td>
 	  <td><%= interview.age %></td>
-      <td><%= link_to "View", url_for(:controller => "interviews",:action => "view_interview", :id => interview.id )%></td>
+      <td><%= link_to "View", url_for(:controller => "admin",:action => "view_interview", :id => interview.id )%> - <%if interview.visible == 1 %><%= link_to "Disable", url_for(:controller => "admin",:action => "disable_interview", :id => interview.id )%><% else %><%= link_to "Enable", url_for(:controller => "admin",:action => "enable_interview", :id => interview.id )%> <% end %></td>
 
     </tr>
   <% end %>

@@ -1,0 +1,39 @@
+
+
+
+
+<br><br>
+
+<font face="arial">
+
+<%= form_for @interview, :url => {:controller => "admin", :action => "new_interview"}, :html => {:class => "navbar-search" } do |f| -%> 
+  <% @interview.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  
+  <legend>New Interview - Step 1</legend>
+  
+  <label>Interview ID</label>
+  <%= f.text_field :interview_id, :value => @next_id.to_s %>
+  
+  <label>Interview Date</label>
+  <%= date_select :interview, :interview_date %>
+  
+  <label>Source Class</label>
+  <%= f.text_field :source_class %>
+    
+  <label>Community Studied</label>
+  <%= f.text_field :community_studied %>
+  
+  <label>Audio Recording Device</label>
+  <%= f.text_field :audio_recording_device %>
+      
+  <label>Audio Recording Format</label>
+  <%= f.text_field :audio_recording_format %>
+      
+        <br><br>
+  <%= f.submit "Create" %>
+  
+  
+<% end -%>
+

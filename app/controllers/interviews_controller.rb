@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
   def index
-    @interviews = Interview.find(:all, :order => "interview_id")
+    @interviews = Interview.find(:all, :conditions => "visible = 1", :order => "interview_id")
   end
 
   def view_interview

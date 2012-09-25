@@ -1,0 +1,168 @@
+<br><br>
+<div class="row">
+	<div class="span4">
+	
+<font face="arial">
+
+<%= form_for @interviewee, :url => {:controller => "admin", :action => "new_interview_2"}, :html => {:class => "navbar-search" } do |f| -%> 
+  <% @interviewee.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  
+  <legend>New Interview - Step 2</legend>
+  
+  <label>Interviewee Name</label>
+  <%= f.text_field :pseudonym, :placeholder => @next_id.to_s %>
+  
+  <label>Ethnicity</label>
+  <%= select("interviewee", "ethnicity", Ethnicity.all.collect {|p| [ p.ethnicity, p.code ] }, {:include_blank => true}) %>
+
+  <label>Sex</label>
+  <%= select("interviewee", "sex", %w[F M], {:include_blank => true}) %>
+  
+  <label>Age</label>
+  <%= f.text_field :age, :placeholder => @next_id.to_s %>
+  
+  <label>Community</label>
+  <%= f.text_field :community, :placeholder => @next_id.to_s %>
+
+  <label>Occupation</label>
+  <%= f.text_field :occupation, :placeholder => @next_id.to_s %>
+
+  <label>Education</label>
+  <%= f.text_field :education, :placeholder => @next_id.to_s %>
+
+  <label>Childhood Residence</label>
+  <%= f.text_field :childhood_residence, :placeholder => @next_id.to_s %>
+
+  <label>Current Residence</label>
+  <%= f.text_field :current_residence, :placeholder => @next_id.to_s %>
+
+  <%= hidden_field_tag :interview_id, @interview.id%>
+
+
+      
+  <br><br>
+  <%= f.submit "Add Interviewee" %>
+  
+  <% if @display_link_next %><br><Br><%= link_to "Move to Next Step", :action => "new_interview_3", :id => @interview.id %><% end %>
+  
+  
+<% end -%>
+</div>
+
+
+<div class="span4">
+
+Interviewees:
+<br>
+<% for interviewee in @interview.interviewees %>
+<table class="table table-hover table-bordered table-condensed table-striped">
+<tr>
+<th>
+Name:
+</th>
+<th>
+<%= interviewee.pseudonym %>
+</th>
+</tr>
+
+<tr>
+<td>
+Community:
+</td>
+<td>
+<%= interviewee.community %>
+</td>
+</tr>
+
+<tr>
+<td>
+Sex:
+</td>
+<td>
+<%= interviewee.sex %>
+</td>
+</tr>
+
+<tr>
+<td>
+Age:
+</td>
+<td>
+<%= interviewee.age %>
+</td>
+</tr>
+
+<tr>
+<td>
+Ethnicity:
+</td>
+<td>
+<%= interviewee.ethnicity %>
+</td>
+</tr>
+
+<tr>
+<td>
+Occupation:
+</td>
+<td>
+<%= interviewee.occupation %>
+</td>
+</tr>
+
+<tr>
+<td>
+Education:
+</td>
+<td>
+<%= interviewee.education  %>
+</td>
+</tr>
+
+<tr>
+<td>
+Childhood Residence:
+</td>
+<td>
+<%= interviewee.childhood_residence %>
+</td>
+</tr>
+
+<tr>
+<td>
+Current Residence:
+</td>
+<td>
+<%= interviewee.current_residence %>
+</td>
+</tr>
+
+
+<% if interviewee.nil?
+	if interviewee.notes.strip().size > 0
+
+ %>
+<tr>
+<td colspan=2>
+Notes:
+</td>
+</tr>
+<tr>
+<td colspan=2>
+<%= interviewee.notes %>
+</td>
+</tr>
+<% end
+end
+ %>
+
+
+</table>
+<hr>
+<% end %>
+
+</div>
+
+</div>

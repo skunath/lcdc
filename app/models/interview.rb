@@ -1,10 +1,17 @@
 class Interview < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :interview_id, :interview_date, :source_class, :community_studied, :audio_recording_device, :audio_recording_format
   has_many :interviewees
   has_many :interviewers
   has_many :interview_files
   has_many :transcription_indices
   
+   validates_uniqueness_of :interview_id
+  
+  def self.get_next_interview_id()
+      max_id = self.count_by_sql("select max(interview_id) from interviews").to_i
+      max_id += 1
+      return max_id
+  end
   
   def names
     output_names = []

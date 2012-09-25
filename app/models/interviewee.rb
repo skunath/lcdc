@@ -1,6 +1,6 @@
 class Interviewee < ActiveRecord::Base
-  # attr_accessible :title, :body
-  
+  attr_accessible :pseudonym, :age, :sex, :ethnicity, :community, :occupation, :education, :childhood_residence, :current_residence
+  validates_presence_of :pseudonym, :age, :sex, :ethnicity, :community
   belongs_to :interview
   
   def ethnicity_label

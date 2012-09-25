@@ -1,0 +1,19 @@
+<br><br>
+
+<font face="arial">
+
+<h1>Interview: <%= @interview.interview_id %></h1>
+
+<% records = Dir.glob(Lcdc::Application.config.LCDC_New_File_Location + "*") %>
+
+<h2>Unassociated Files</h2>
+<ul>
+<% for file in records%>
+	<li>
+	<%= File.basename(file) %> (<%= number_to_human_size(File.size(file))%>) <%= link_to "Associate this file", :controller => "admin", :action => "move_file", :id => @interview.id, :filename => file %>
+	</li>
+<% end %>
+</ul>
+
+<%= link_to "Return to Interview", :controller => "admin", :action => "view_interview", :id => @interview.id %>
+
