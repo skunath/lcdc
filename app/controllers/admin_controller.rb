@@ -49,7 +49,7 @@ class AdminController < ApplicationController
     
     # code to move files
     begin
-      move_location = Lcdc::Application.config.LCDC_File_Location + ("%03d" % @interview.interview_id.to_s) + "/" + File.basename(params[:filename])
+      move_location = Lcdc::Application.config.LCDC_File_Location + ("%03d" % @interview.interview_id) + "/" + File.basename(params[:filename])
       FileUtils.mv(Shellwords.escape(params[:filename]), Shellwords.escape(move_location))
       @ifile = @interview.interview_files.new
       @ifile.file_name = File.basename(params[:filename])
